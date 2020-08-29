@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'produce',
     'produce_category',
-    'roles',
 ]
 
 REST_FRAMEWORK = {
@@ -93,7 +92,9 @@ WSGI_APPLICATION = 'marketplace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'marketplace'
+        'NAME': 'marketplace',
+        'HOST': '127.0.0.1',
+        'PORT': 27017,
     }
 }
 
