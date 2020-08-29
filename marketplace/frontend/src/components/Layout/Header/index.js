@@ -21,8 +21,7 @@ class Header extends Component {
             return (
                 <nav className="navbar pharmacy_nav navbar-expand-lg navbar-dark">
                     <a className="navbar-brand pharmacy_nav__logo">
-                        <img src="/media/img/app_logo.svg"/>
-                        <h3>Smile For Life</h3>
+                        <h3>Marketplace</h3>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarResponsive"

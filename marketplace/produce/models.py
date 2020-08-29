@@ -11,5 +11,5 @@ class Produce(models.Model):
     price = models.IntegerField(blank=False, default=0)
     quantity = models.IntegerField(blank=False, default=0)
     description = models.CharField(max_length=400, blank=False, default='')
-    category_id = models.ForeignKey(ProduceCategory, on_delete=models.CASCADE, related_name='produce_category')
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="produce_owner", on_delete=models.CASCADE)
+    category_id = models.ForeignKey(ProduceCategory, on_delete=models.CASCADE, related_name='produce_category', null=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="produce_owner", on_delete=models.CASCADE, null=True)

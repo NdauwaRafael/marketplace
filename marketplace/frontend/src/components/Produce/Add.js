@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import AddRecordForm from './partials/AddRecordForm';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {addProduce} from "../../Redux/actions/products";
 
 export class Add extends Component {
     constructor(props) {
@@ -7,8 +10,8 @@ export class Add extends Component {
         this.state = {
             produce: {
                 name: '',
-                price: 0,
-                quantity: '0',
+                price: '',
+                quantity: '',
                 description: '',
                 owner: ''
             },
@@ -27,9 +30,9 @@ export class Add extends Component {
     handleChange(event) {
         let field = event.target.name;
         let value = event.target.value;
-        let record = Object.assign({}, this.state.record);
-        record[field] = value;
-        return this.setState({ record });
+        let produce = Object.assign({}, this.state.produce);
+        produce[field] = value;
+        return this.setState({ produce });
     };
 
     produceIsValid() {
@@ -42,19 +45,19 @@ export class Add extends Component {
             errors.name = '';
         }
 
-        if (produce.price) {
+        if (!produce.price) {
             errors.price = 'Price is required';
         } else {
             errors.price = '';
         }
 
-        if (produce.quantity > 0) {
+        if (parseInt(produce.quantity) === 0) {
             errors.quantity = 'Quantity cannot be 0, when adding a produce';
         } else {
             errors.quantity = '';
         }
 
-        if (produce.description.length > 0) {
+        if (produce.description.length < 5) {
             errors.description = 'Description is too short';
         } else {
             errors.description = '';
@@ -65,7 +68,14 @@ export class Add extends Component {
         return isValid;
     };
 
-    onSave() { }
+    onSave(e) {
+        e.preventDefault();
+
+        if (!this.produceIsValid()) {
+            return;
+        }
+        this.props.addProduce(this.state.produce);
+    }
 
     render() {
         const { produce, auth, errors } = this.state
@@ -82,4 +92,16 @@ export class Add extends Component {
     }
 }
 
-export default Add
+const mapStateToProps = ({auth: {addProduceErrors}, produce}) => {
+    return {
+        addProduceErrors,
+        produce
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addProduce: bindActionCreators(addProduce, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Add)

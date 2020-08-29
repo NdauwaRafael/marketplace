@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import records from './records';
-import clients from './clients';
+import produces from './produces';
 import auth from './auth';
 import users from './users';
 
 export default combineReducers({
-    records,
-    clients,
+    produces,
     auth,
     users
 })

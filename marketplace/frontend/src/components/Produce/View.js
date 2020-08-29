@@ -9,19 +9,19 @@ class View extends Component {
         }
     }
     render() {
-        const { records } = this.props;
+        const { produces } = this.props;
         return (
             <Fragment>
                 <ViewRecordsTable
                     auth={this.state.auth}
-                    records={records} />
+                    records={produces} />
             </Fragment>
         )
     }
 }
-const mapStateToProps = ({ records: { records } }) => {
+const mapStateToProps = ({ produces: { produces } }) => {
     return {
-        records
+        produces
     }
 }
 export default connect(mapStateToProps)(View);
