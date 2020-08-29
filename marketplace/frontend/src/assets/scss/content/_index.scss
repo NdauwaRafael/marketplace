@@ -1,6 +1,7 @@
 body {
-    background: #eeeeee;
+  background: #eeeeee;
 }
+
 .app_container {
   margin-left: 270px;
   padding: 20px;
@@ -9,4 +10,12 @@ body {
   height: calc(100vh - 70px);
   margin-top: 50px;
 }
+
 @import './dashboard-cards/index';
+
+
+@media screen and (max-width: 1024px) {
+  .app_container {
+    margin-left: 0;
+  }
+}

@@ -50,3 +50,15 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .app_sidenav {
+    width: 80%;
+    position: absolute;
+    display: none;
+
+    &.show_over {
+      display: block;
+    }
+  }
+}

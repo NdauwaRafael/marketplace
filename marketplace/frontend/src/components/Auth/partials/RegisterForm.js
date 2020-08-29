@@ -88,9 +88,9 @@ const RegisterForm = ({
                     error={errors.cpassword}
                     onChange={onChange}/>
 
-                <Checkbox name="is_farmer" label="I am a Farmer" onChange={onCheckChange} value={is_farmer} error={errors.is_farmer} />
+                <Checkbox name="is_farmer" label="I am a Farmer" onChange={onCheckChange} checked={is_farmer} error={errors.is_farmer} />
 
-                <Checkbox name="is_buyer" label="I am a Buyer" onChange={onCheckChange} value={is_buyer} error={errors.is_buyer}  />
+                <Checkbox name="is_buyer" label="I am a Buyer" onChange={onCheckChange} checked={is_buyer} error={errors.is_buyer}  />
 
                 <div className="row">
                     <div className="col">

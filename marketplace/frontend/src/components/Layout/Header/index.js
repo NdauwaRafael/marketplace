@@ -3,11 +3,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import {logoutUser} from "../../../Redux/actions/auth";
 import {withRouter} from 'react-router-dom';
+import {toggleMenu} from "../../../Redux/actions/ui";
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
     }
 
     logout() {
@@ -15,16 +17,19 @@ class Header extends Component {
         this.props.history.push('/login')
     }
 
+    toggleMenu(){
+        this.props.toggleMenu()
+    }
     render() {
-        const {isAuthenticated} = this.props;
+        const {isAuthenticated, user} = this.props;
         if (isAuthenticated) {
             return (
                 <nav className="navbar pharmacy_nav navbar-expand-lg navbar-dark">
                     <a className="navbar-brand pharmacy_nav__logo">
                         <h3>Marketplace</h3>
                     </a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarResponsive"
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={()=>this.toggleMenu()}
+                            data-target="#navbarResponsive1"
                             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"/>
                     </button>
@@ -40,7 +45,7 @@ class Header extends Component {
                                     <i className="material-icons">
                                         person
                                     </i>
-                                    Admin Account
+                                    {user.first_name} {user.last_name}
                                     <span className="caret"/></a>
                                 <div className="dropdown-menu" aria-labelledby="download">
                                     <a className="dropdown-item">
@@ -65,11 +70,13 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = ({auth: {isAuthenticated}}) => ({
-    isAuthenticated
+const mapStateToProps = ({auth: {isAuthenticated, user}}) => ({
+    isAuthenticated,
+    user
 });
 
 const mapDispatcToProps = (dispatch) => ({
-    logout: bindActionCreators(logoutUser, dispatch)
+    logout: bindActionCreators(logoutUser, dispatch),
+    toggleMenu: bindActionCreators(toggleMenu, dispatch)
 });
 export default connect(mapStateToProps, mapDispatcToProps)(withRouter(Header));

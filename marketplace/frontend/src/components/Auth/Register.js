@@ -33,8 +33,8 @@ class RegisterUser extends Component {
                 cpassword: '',
                 bio: '',
                 id_no: '',
-                is_farmer: '',
-                is_buyer: ''
+                is_farmer: null,
+                is_buyer: null
             }
         };
         this.handleChange = this.handleChange.bind(this);

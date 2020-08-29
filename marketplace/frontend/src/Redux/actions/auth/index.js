@@ -103,12 +103,12 @@ export const logoutUser = () => (dispatch, getState) => {
         .then(resp => {
             return dispatch([
                 logoutSuccess(),
-                getMessages('logout Success')
+                // getMessages('logout Success')
             ])
         })
         .catch(error => {
             return dispatch([
-                getErrors('Logout Failed')
+                // getErrors('Logout Failed')
             ])
         })
 };

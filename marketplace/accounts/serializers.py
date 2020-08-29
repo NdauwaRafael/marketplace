@@ -2,10 +2,6 @@ from rest_framework import serializers
 from .models import User
 from django.contrib.auth import authenticate
 
-
-# from posts.serializers import PostSerializer
-
-
 # User Serializer
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

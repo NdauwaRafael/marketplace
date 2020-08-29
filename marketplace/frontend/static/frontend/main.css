@@ -7404,9 +7404,6 @@ table,
   left: 0;
   z-index: 500; }
   .pharmacy_nav__logo {
-    width: 250px;
-    height: 70px;
-    padding: 10px;
     background: rgba(0, 0, 0, 0.2); }
     .pharmacy_nav__logo h3 {
       color: #ffffff; }
@@ -7469,6 +7466,14 @@ table,
     justify-content: flex-start;
     align-items: center; }
 
+@media screen and (max-width: 1024px) {
+  .app_sidenav {
+    width: 80%;
+    position: absolute;
+    display: none; }
+    .app_sidenav.show_over {
+      display: block; } }
+
 body {
   background: #eeeeee; }
 
@@ -7516,6 +7521,10 @@ body {
     .summary-cards .summary-card .footnote strong {
       color: #2196f3;
       font-weight: 700; }
+
+@media screen and (max-width: 1024px) {
+  .app_container {
+    margin-left: 0; } }
 
 .login {
   height: 100%;

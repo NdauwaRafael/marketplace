@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
     render() {
-        const {name, value, label, error, onChange} = this.props;
+        const {name, value, label, error, checked, onChange} = this.props;
         let validatorClass = '';
         let parentValidator = '';
         let errorMessageValidator = ''
-        if (error.length > 0) {
+        if (error) {
             validatorClass = 'is-invalid';
             parentValidator = 'has-danger';
             errorMessageValidator = 'invalid-feedback';
@@ -32,7 +32,7 @@ class Checkbox extends Component {
                         name={name}
                         ref={name}
                         onChange={onChange}
-                    checked={value}/>
+                    checked={checked}/>
                     <label className="custom-control-label" htmlFor={name}>{label}</label>
                 </div>
                 <small className={"form-text " + errorMessageValidator}>{error}</small>
