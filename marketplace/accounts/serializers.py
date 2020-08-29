@@ -1,5 +1,3 @@
-from abc import ABC
-
 from rest_framework import serializers
 from .models import User
 from django.contrib.auth import authenticate
@@ -51,7 +49,7 @@ class UpdateSerializer(serializers.ModelSerializer):
 
 
 # Login Serializer
-class LoginSerializer(serializers.Serializer, ABC):
+class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 

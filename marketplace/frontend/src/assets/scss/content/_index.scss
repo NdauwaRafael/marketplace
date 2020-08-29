@@ -1,0 +1,12 @@
+body {
+    background: #eeeeee;
+}
+.app_container {
+  margin-left: 270px;
+  padding: 20px;
+  padding-right: 30px;
+  background: #eeeeee;
+  height: calc(100vh - 70px);
+  margin-top: 50px;
+}
+@import './dashboard-cards/index';

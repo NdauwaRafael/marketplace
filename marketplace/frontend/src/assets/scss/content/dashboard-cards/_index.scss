@@ -1,0 +1,47 @@
+.summary-cards {
+    .summary-card {
+        flex: 1;
+        background-color: #ffffff;
+        opacity: 0.8;
+        margin-right: 20px;
+        text-align: center;
+        height: 240px;
+        display: flex;
+        flex-direction: column;
+        &.last {
+            margin-right: 0;
+        }
+
+        .title {
+            color: #2196f3;
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .description {
+            color: #1c2b36;
+            font-family: "Open Sans";
+            font-size: 20px;
+            letter-spacing: 1.25px;
+            text-transform: uppercase;
+            flex: 2;
+        }
+
+        .footnote {
+            opacity: 0.7;
+            color: #1c2b36;
+            font-family: "Open Sans";
+            font-size: 14px;
+            flex: 1;
+            strong {
+                color: #2196f3;
+                font-weight: 700;
+            }
+        }
+    }
+}

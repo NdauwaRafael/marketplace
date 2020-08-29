@@ -1,0 +1,61 @@
+.pharmacy_nav {
+  //width: 100%;
+  background: #009688;
+  height: 50px;
+  padding: 0 20px 0 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 500;
+
+  &__logo {
+    width: 250px;
+    height: 70px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    h3{
+      color: #ffffff;
+    }
+
+    img {
+      height: 70px;
+      display: none;
+    }
+  }
+
+  &__menus {
+    padding-left: 30px;
+
+    &.show {
+      background: #138078;
+      width: 100%;
+      margin-right: -50px;
+    }
+
+    &.collapsing {
+      width: 100%;
+      margin-right: -50px;
+    }
+  }
+
+  &__action {
+    .dropdown {
+      .dropdown-menu {
+        right: 0;
+        left: inherit;
+      }
+    }
+
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .material-icons {
+        font-size: 18px;
+        margin-right: 3px;
+      }
+    }
+  }
+}

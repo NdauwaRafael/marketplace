@@ -1,52 +1,63 @@
-import React, { Component, Fragment } from 'react';
-import Header from './Layouts/Header';
-import { render } from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from '../Redux';
-import Alerts from './Layouts/Alerts';
-import AppRoutes from '../router';
+import React, {Component, Fragment} from 'react';
+import {HashRouter as Router} from 'react-router-dom';
+import Header from './Layout/Header';
+import SideMenu from './Layout/SideBar'
+import AppRoutes from '../Router';
+import {connect} from 'react-redux';
 import { loadUser } from '../Redux/actions/auth';
-import {getDepartments} from '../Redux/actions/departments';
-import {getRoles} from "../Redux/actions/roles";
-//ALERTS
-import { transitions, Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
-const alertOptions = {
-    timeout: 5000,
-    position: 'top right',
-    offset: '70px',
-    transition: transitions.FADE
-};
+import {bindActionCreators} from "redux";
+import {loadUsers} from "../Redux/actions/users";
 
 class App extends Component {
     componentDidMount() {
-        store.dispatch(loadUser());
-        store.dispatch(getDepartments());
-        store.dispatch(getRoles());
+        this.props.loadUser();
+        this.props.loadUsers();
     }
+
     render() {
-        return (
-            <Router>
-                <Fragment>
-                    <Header />
-                    <Alerts />
-                    <div className="container">
+        const {isAuthenticated} = this.props;
+        if (isAuthenticated) {
+            return (
+                <Router>
+                    <Fragment>
+                        <Header/>
+                        <SideMenu/>
+                        <div className="app_container">
+                            {
+                                AppRoutes
+                            }
+                        </div>
+                    </Fragment>
+                </Router>
+            );
+        } else {
+            return (
+                <Router>
+                    <Fragment>
                         {
                             AppRoutes
                         }
-                    </div>
-                </Fragment>
-            </Router>
-        );
-
+                    </Fragment>
+                </Router>
+            );
+        }
     }
 }
 
-render(
-    <Provider store={store}>
-        <AlertProvider template={AlertTemplate} {...alertOptions}>
-            <App />
-        </AlertProvider>
-    </Provider >,
-    document.getElementById('app'));
+
+function mapStateToProps({auth: {isAuthenticated}}) {
+    return {
+        isAuthenticated
+    };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    loadUser: bindActionCreators(loadUser, dispatch),
+    loadUsers: bindActionCreators(loadUsers, dispatch)
+});
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
+
+
