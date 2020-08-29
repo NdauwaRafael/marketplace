@@ -5,9 +5,14 @@ import React, {Fragment} from 'react';
 import TextInput from "../../common/form/Input";
 import Textarea from "../../common/form/Textarea";
 import {NavLink} from "react-router-dom";
+import Checkbox from "../../common/form/CheckBox";
 
-const RegisterForm = ({user: { username, email, first_name, last_name,
-    id_no, phone, password, cpassword, bio, is_farmer, is_buyer, is_admin}, onSave, onChange, errors}) => {
+const RegisterForm = ({
+                          user: {
+                              username, email, first_name, last_name,
+                              id_no, phone, password, cpassword, bio, is_farmer, is_buyer
+                          }, onSave, onChange, errors,onCheckChange
+                      }) => {
     return (
         <Fragment>
             <form onSubmit={onSave}>
@@ -45,14 +50,6 @@ const RegisterForm = ({user: { username, email, first_name, last_name,
 
                 <TextInput
                     type='text'
-                    name='username'
-                    label="Username"
-                    value={username}
-                    error={errors.username}
-                    onChange={onChange}/>
-
-                <TextInput
-                    type='text'
                     name='id_no'
                     label="Id Number / Passport"
                     value={id_no}
@@ -73,7 +70,7 @@ const RegisterForm = ({user: { username, email, first_name, last_name,
                     label="Bio"
                     value={bio}
                     error={errors.bio}
-                    onChange={onChange} />
+                    onChange={onChange}/>
 
                 <TextInput
                     type='password'
@@ -90,6 +87,10 @@ const RegisterForm = ({user: { username, email, first_name, last_name,
                     value={cpassword}
                     error={errors.cpassword}
                     onChange={onChange}/>
+
+                <Checkbox name="is_farmer" label="I am a Farmer" onChange={onCheckChange} value={is_farmer} error={errors.is_farmer} />
+
+                <Checkbox name="is_buyer" label="I am a Buyer" onChange={onCheckChange} value={is_buyer} error={errors.is_buyer}  />
 
                 <div className="row">
                     <div className="col">

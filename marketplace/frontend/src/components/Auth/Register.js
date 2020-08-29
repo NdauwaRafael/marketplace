@@ -21,7 +21,8 @@ class RegisterUser extends Component {
                 cpassword: '',
                 bio: '',
                 id_no: '',
-
+                is_farmer: false,
+                is_buyer: false
             },
             errors: {
                 username: '',
@@ -32,9 +33,12 @@ class RegisterUser extends Component {
                 cpassword: '',
                 bio: '',
                 id_no: '',
+                is_farmer: '',
+                is_buyer: ''
             }
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleCheckChange = this.handleCheckChange.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -119,6 +123,16 @@ class RegisterUser extends Component {
         })
     }
 
+    handleCheckChange(event) {
+        let field = event.target.name;
+        let checked = !!event.target.checked;
+        let user = Object.assign({}, this.state.user);
+        user[field] = checked;
+        this.setState({
+            user
+        })
+    }
+
 
     render() {
         let {user, errors} = this.state;
@@ -143,6 +157,7 @@ class RegisterUser extends Component {
                                 user={user}
                                 errors={errors}
                                 onChange={this.handleChange}
+                                onCheckChange={this.handleCheckChange}
                                 onSave={this.onSave}
                             />
                         </div>

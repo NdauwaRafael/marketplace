@@ -128,7 +128,7 @@ export const registerUserFailed = (errors) => {
     }
 };
 
-export const registerUser = ({username, email, phone, first_name, last_name, password, bio, id_no}) => dispatch => {
+export const registerUser = ({username, email, phone, first_name, last_name, password, bio, id_no, is_farmer, is_buyer}) => dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -143,7 +143,8 @@ export const registerUser = ({username, email, phone, first_name, last_name, pas
         last_name,
         password,
         bio,
-        id_no
+        id_no,
+        is_farmer, is_buyer
     });
     authApi.registerUserApi(user, config)
         .then(resp => {
