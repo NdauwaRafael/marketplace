@@ -27,6 +27,29 @@ export class Add extends Component {
         this.onSave = this.onSave.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        const {addProduceErrors, produces} = this.props;
+        if (prevProps.addProduceErrors !== addProduceErrors) {
+            this.setState({
+                errors: addProduceErrors
+            })
+        }
+
+        if (prevProps.produces.produces !== produces.produces) {
+            this.setState({
+                produce: {
+                    name: '',
+                    price: '',
+                    quantity: '',
+                    description: '',
+                    owner: ''
+                }
+            });
+            this.props.history.push('/produce/list');
+        }
+
+    }
+
     handleChange(event) {
         let field = event.target.name;
         let value = event.target.value;
@@ -78,7 +101,7 @@ export class Add extends Component {
     }
 
     render() {
-        const { produce, auth, errors } = this.state
+        const { produce, auth, errors } = this.state;
         return (
             <Fragment>
                 <AddRecordForm
@@ -92,10 +115,10 @@ export class Add extends Component {
     }
 }
 
-const mapStateToProps = ({auth: {addProduceErrors}, produce}) => {
+const mapStateToProps = ({produces: {addProduceErrors}, produces}) => {
     return {
         addProduceErrors,
-        produce
+        produces
     }
 };
 const mapDispatchToProps = (dispatch) => {

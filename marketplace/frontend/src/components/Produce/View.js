@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import ViewRecordsTable from './partials/RecordTable';
 import { connect } from 'react-redux';
+import {bindActionCreators} from "redux";
+import {addProduce, loadProduces} from "../../Redux/actions/products";
 class View extends Component {
     constructor(props) {
         super(props);
@@ -8,6 +10,11 @@ class View extends Component {
             auth: {}
         }
     }
+
+    componentDidMount() {
+        this.props.loadProduce()
+    }
+
     render() {
         const { produces } = this.props;
         return (
@@ -19,9 +26,17 @@ class View extends Component {
         )
     }
 }
+
 const mapStateToProps = ({ produces: { produces } }) => {
     return {
         produces
     }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadProduce: bindActionCreators(loadProduces, dispatch)
+    }
 }
-export default connect(mapStateToProps)(View);
+
+export default connect(mapStateToProps, mapDispatchToProps)(View);
