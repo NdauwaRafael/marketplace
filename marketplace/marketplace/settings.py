@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'knox',
     'corsheaders',
     'produce',
-    'produce_category'
+    'produce_category',
+    'roles',
 ]
 
 REST_FRAMEWORK = {
